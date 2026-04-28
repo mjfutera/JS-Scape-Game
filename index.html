@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cast &amp; Collect</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <!-- Game Canvas -->
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- ── Main Menu Overlay ─────────────────────────────────────────── -->
+    <div id="menu">
+      <!-- Main screen -->
+      <div id="mainMenu" class="panel">
+        <h1>Cast &amp; Collect</h1>
+        <p class="subtitle">A 3D Raycasting Maze</p>
+        <div class="btn-group">
+          <button id="startBtn" class="btn btn-primary">▶ Start</button>
+          <button id="settingsBtn" class="btn">⚙ Settings</button>
+          <button id="aboutBtn" class="btn">ℹ About</button>
+        </div>
+      </div>
+
+      <!-- Settings screen -->
+      <div id="settingsPanel" class="panel hidden">
+        <h2>Settings</h2>
+        <div class="setting-row">
+          <label for="fovRange">Field of View: <span id="fovValue">66</span>°</label>
+          <input type="range" id="fovRange" min="40" max="110" value="66" />
+        </div>
+        <div class="setting-row">
+          <label for="sensRange">Mouse Sensitivity: <span id="sensValue">2</span></label>
+          <input type="range" id="sensRange" min="1" max="10" value="2" />
+        </div>
+        <div class="setting-row">
+          <label for="sizeRange">Maze Size: <span id="sizeValue">21</span></label>
+          <input type="range" id="sizeRange" min="15" max="41" step="2" value="21" />
+        </div>
+        <button id="backFromSettings" class="btn">← Back</button>
+      </div>
+
+      <!-- About screen -->
+      <div id="aboutPanel" class="panel hidden">
+        <h2>About</h2>
+        <p>
+          <strong>Cast &amp; Collect</strong> is a browser-based 3D raycasting
+          maze game rendered entirely on an HTML5 Canvas using a custom
+          <em>DDA (Digital Differential Analyzer)</em> algorithm — no WebGL
+          required.
+        </p>
+        <p>Explore procedurally generated mazes and collect all the gems!</p>
+        <h3>Controls</h3>
+        <ul>
+          <li><kbd>W / A / S / D</kbd> — Move</li>
+          <li><kbd>Mouse</kbd> — Look around</li>
+          <li><kbd>Arrow Keys</kbd> — Alternative turn/move</li>
+          <li><kbd>ESC</kbd> — Pause / release mouse</li>
+        </ul>
+        <button id="backFromAbout" class="btn">← Back</button>
+      </div>
+    </div>
+
+    <!-- ── Pause Overlay ─────────────────────────────────────────────── -->
+    <div id="pauseOverlay" class="hidden">
+      <div class="panel">
+        <h2>Paused</h2>
+        <p>Click to resume</p>
+        <button id="resumeBtn" class="btn btn-primary">Resume</button>
+        <button id="quitBtn" class="btn">Main Menu</button>
+      </div>
+    </div>
+
+    <!-- ── Win Overlay ───────────────────────────────────────────────── -->
+    <div id="winOverlay" class="hidden">
+      <div class="panel">
+        <h2>🏆 You Win!</h2>
+        <p id="winMessage">All gems collected!</p>
+        <button id="playAgainBtn" class="btn btn-primary">Play Again</button>
+        <button id="winMenuBtn" class="btn">Main Menu</button>
+      </div>
+    </div>
+
+    <!-- ── HUD ──────────────────────────────────────────────────────── -->
+    <div id="hud" class="hidden">
+      <div id="hudScore">
+        <span class="hud-label">💎 Gems</span>
+        <span id="hudCollected">0</span>/<span id="hudTotal">0</span>
+      </div>
+      <div id="crosshair">+</div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
